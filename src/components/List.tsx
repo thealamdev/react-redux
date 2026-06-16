@@ -1,18 +1,22 @@
 import { useDispatch } from 'react-redux';
 import cancel from '../assets/images/cancel.png';
 import type { Todo } from '../redux/todos/initialValues';
-import { toggled } from '../redux/todos/actions';
+import { colorChanged, deleted, toggled } from '../redux/todos/actions';
 
 type PageProps = {
     todo: Todo
 }
 
 export default function List({ todo }: PageProps) {
-    const { id, title, completed } = todo;
+    const { id, title, completed, color } = todo;
     const dispatch = useDispatch();
 
     const handleStatusChange = (id: number) => {
         dispatch(toggled(id))
+    }
+
+    const handleColorChanged = (id: number, color: string) => {
+        dispatch(colorChanged(id, color))
     }
 
     return (
@@ -48,13 +52,15 @@ export default function List({ todo }: PageProps) {
             ></div>
 
             <div
-                className="flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-red-500 hover:bg-red-500"
+                onClick={() => handleColorChanged(id, 'red')}
+                className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer ${color === 'red' && 'bg-red-500'} border-red-500 hover:bg-red-500`}
             ></div>
 
             <img
                 src={cancel}
                 className="flex-shrink-0 w-4 h-4 ml-2 cursor-pointer"
                 alt="Cancel"
+                onClick={() => dispatch(deleted(id))}
             />
         </div>
     )

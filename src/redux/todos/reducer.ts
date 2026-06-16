@@ -1,4 +1,4 @@
-import { ADDED, ALLCLEARECOMPLETED, ALLCOMPLETED, TOGGLED } from "./actionTypes";
+import { ADDED, ALLCLEARECOMPLETED, ALLCOMPLETED, COLORCHANGED, DELETED, TOGGLED } from "./actionTypes";
 import { initialValues, type Todo } from "./initialValues";
 
 const reducer = (state = initialValues, action: any) => {
@@ -22,7 +22,24 @@ const reducer = (state = initialValues, action: any) => {
                     ...item,
                     completed: !item.completed
                 }
-            })
+            });
+
+        case COLORCHANGED:
+
+            return state.map((item) => {
+                console.log(action.payload)
+                if (item.id !== action.payload.id) {
+                    return item;
+                }
+
+                return {
+                    ...item,
+                    color: action.payload.color
+                }
+            });
+
+        case DELETED:
+            return state.filter((item) => item.id !== action.payload);
 
         case ALLCOMPLETED:
             return state.map((item: Todo) => {

@@ -1,8 +1,20 @@
 import notes from '../assets/images/notes.png';
 import tick from '../assets/images/double-tick.png'
 import plus from '../assets/images/plus.png';
+import { useDispatch } from 'react-redux';
+import { addcompleted, allclearecompleted } from '../redux/todos/actions';
 
 export default function Filter() {
+    const dispatch = useDispatch();
+
+    const handleAllCompleted = () => {
+        dispatch(addcompleted())
+    }
+
+    const clearAllCompletedTask = () => {
+        dispatch(allclearecompleted())
+    }
+
     return (
         <div>
             <div>
@@ -26,8 +38,10 @@ export default function Filter() {
                     ></button>
                 </form>
 
-                <ul className="flex justify-between my-4 text-xs text-gray-500">
-                    <li className="flex space-x-1 cursor-pointer">
+                <ul
+                    className="flex justify-between my-4 text-xs text-gray-500"
+                >
+                    <li onClick={handleAllCompleted} className="flex space-x-1 cursor-pointer">
                         <img
                             className="w-4 h-4"
                             src={tick}
@@ -35,7 +49,7 @@ export default function Filter() {
                         />
                         <span>Complete All Tasks</span>
                     </li>
-                    <li className="cursor-pointer">Clear completed</li>
+                    <li onClick={clearAllCompletedTask} className="cursor-pointer">Clear completed</li>
                 </ul>
             </div>
             <hr className="mt-4" />

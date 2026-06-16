@@ -10,9 +10,11 @@ type PageProps = {
 export default function List({ todo }: PageProps) {
     const { id, title, completed } = todo;
     const dispatch = useDispatch();
+
     const handleStatusChange = (id: number) => {
         dispatch(toggled(id))
     }
+
     return (
         <div
             className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0"

@@ -11,5 +11,11 @@ export const initialValues: Todo[] = [
         title: 'Learn React Redux',
         completed: false,
         color: 'red'
+    },
+    {
+        id: 2,
+        title: 'Learn React & Next JS',
+        completed: false,
+        color: "green"
     }
 ]

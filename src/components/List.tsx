@@ -1,6 +1,18 @@
-import cancel from '../assets/images/cancel.png'
+import { useDispatch } from 'react-redux';
+import cancel from '../assets/images/cancel.png';
+import type { Todo } from '../redux/todos/initialValues';
+import { toggled } from '../redux/todos/actions';
 
-export default function List() {
+type PageProps = {
+    todo: Todo
+}
+
+export default function List({ todo }: PageProps) {
+    const { id, title, completed } = todo;
+    const dispatch = useDispatch();
+    const handleStatusChange = (id: number) => {
+        dispatch(toggled(id))
+    }
     return (
         <div
             className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0"
@@ -10,18 +22,19 @@ export default function List() {
             >
                 <input
                     type="checkbox"
+                    onClick={() => handleStatusChange(id)}
                     className="opacity-0 absolute rounded-full"
                 />
                 <svg
-                    className="hidden fill-current w-3 h-3 text-green-500 pointer-events-none"
+                    className={`${!completed && 'hidden'} fill-current w-3 h-3 text-green-500 pointer-events-none`}
                     viewBox="0 0 20 20"
                 >
                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                 </svg>
             </div>
 
-            <div className="select-none flex-1 line-through">
-                Learn React from Learn with Sumit YouTube Channel
+            <div className={`select-none flex-1 ${completed && 'line-through'}`}>
+                {title}
             </div>
 
             <div

@@ -1,4 +1,4 @@
-import { ADDED, ALLCLEARECOMPLETED, ALLCOMPLETED } from "./actionTypes";
+import { ADDED, ALLCLEARECOMPLETED, ALLCOMPLETED, TOGGLED } from "./actionTypes";
 
 export const added = (title: string) => {
     return {
@@ -6,6 +6,13 @@ export const added = (title: string) => {
         payload: {
             title
         }
+    }
+}
+
+export const toggled = (id: number) => {
+    return {
+        type: TOGGLED,
+        payload: id
     }
 }
 

@@ -8,7 +8,7 @@ export type Todo = {
 export const initialValues: Todo[] = [
     {
         id: 1,
-        title: '',
+        title: 'Learn React Redux',
         completed: false,
         color: 'red'
     }

@@ -19,7 +19,7 @@ export const toggled = (id: number) => {
 export const colorChanged = (id: number, color: string) => {
     return {
         type: COLORCHANGED,
-        paylaod: {
+        payload: {
             id: id,
             color: color
         }

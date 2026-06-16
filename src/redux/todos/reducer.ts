@@ -34,7 +34,7 @@ const reducer = (state = initialValues, action: any) => {
 
                 return {
                     ...item,
-                    color: action.payload.color
+                    color: action.payload.color === item.color ? '' : action.payload.color
                 }
             });
 

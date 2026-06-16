@@ -44,21 +44,23 @@ export default function List({ todo }: PageProps) {
             </div>
 
             <div
-                className="flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-green-500 hover:bg-green-500 bg-green-500"
+                onClick={() => handleColorChanged(id, 'green')}
+                className={`shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer ${color === 'green' && 'bg-green-500'} border-green-500 hover:bg-green-500`}
             ></div>
 
             <div
-                className="flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer border-yellow-500 hover:bg-yellow-500"
+                onClick={() => handleColorChanged(id, 'yellow')}
+                className={`shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer ${color === 'yellow' && 'bg-yellow-500'} border-yellow-500 hover:bg-yellow-500`}
             ></div>
 
             <div
                 onClick={() => handleColorChanged(id, 'red')}
-                className={`flex-shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer ${color === 'red' && 'bg-red-500'} border-red-500 hover:bg-red-500`}
+                className={`shrink-0 h-4 w-4 rounded-full border-2 ml-auto cursor-pointer ${color === 'red' && 'bg-red-500'} border-red-500 hover:bg-red-500`}
             ></div>
 
             <img
                 src={cancel}
-                className="flex-shrink-0 w-4 h-4 ml-2 cursor-pointer"
+                className="shrink-0 w-4 h-4 ml-2 cursor-pointer"
                 alt="Cancel"
                 onClick={() => dispatch(deleted(id))}
             />

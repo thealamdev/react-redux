@@ -2,12 +2,16 @@ import { ADDED, ALLCLEARECOMPLETED, ALLCOMPLETED, COLORCHANGED, DELETED, TOGGLED
 import { initialValues, type Todo } from "./initialValues";
 
 const reducer = (state = initialValues, action: any) => {
+    const nextId = state.reduce((acc: number, todo: Todo) => {
+        return Math.max(acc, todo.id);
+    }, -1) + 1;
+
     switch (action.type) {
         case ADDED:
             return [
                 ...state,
                 {
-                    id: 2,
+                    id: nextId,
                     title: action.payload.title
                 }
             ];

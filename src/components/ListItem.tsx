@@ -25,7 +25,8 @@ export default function ListItem() {
         return true;
     }
 
-    const filteredTodos = todos.filter(filterByStatus).filter(filterByColors)
+    const filteredTodos = todos.filter(filterByStatus).filter(filterByColors);
+    
     return (
         <div>
             <div
